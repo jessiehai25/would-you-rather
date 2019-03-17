@@ -9,3 +9,9 @@ class LeaderBoard extends Component {
 			)
 	}
 }
+
+function mapStateToProps({users}){
+
+}
+
+export default connect()(LeaderBoard)

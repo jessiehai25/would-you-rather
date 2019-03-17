@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NewQuestion/>
+        <Question id={id}/>
       </div>
     );
   }
