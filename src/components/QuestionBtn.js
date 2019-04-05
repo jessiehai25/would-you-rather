@@ -1,19 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Question from './Question'
 import {formatDate} from '../utils/helpers'
+import {Link} from 'react-router-dom'
 
 class QuestionBtn extends Component{
 
-	toQuestion = (e,id) => {
-		e.preventDefault()
-		console.log("Button Clicked", id)
-		//send to answer/result
-	}
-
 	render(){
 
-		const {question, hasAnswered, questioner} = this.props
+		const {question, questioner} = this.props
 
 		if (question === null){
 			return <p>This Question doesn't exist</p>
@@ -21,7 +15,7 @@ class QuestionBtn extends Component{
 
 		const {id, author, timestamp, optionOne, optionTwo} = question
 		return(
-			<div>
+			<Link to={`/question/${id}`} className="remove">
 
 				<div className = 'question'>
 					<div>
@@ -31,7 +25,7 @@ class QuestionBtn extends Component{
 						</div>
 					</div>
 					<div className = "questionBox">
-						<div className = 'questionBoxBtn' onClick={(e)=>this.toQuestion(e,id)}>
+						<div className = 'questionBoxBtn'>
 							<img 
 								src = {questioner.avatarURL}
 								alt = {`Avatar of ${author}`}
@@ -48,17 +42,16 @@ class QuestionBtn extends Component{
 						</div>
 					</div>
 				</div>
-			</div>
+			</Link>
 			)
 	}
 }
 
-function mapStateToProps({users, questions}, {id, hasAnswered}){
+function mapStateToProps({users, questions}, {id}){
 	const question = questions[id]
 	const questioner = question ? users[question.author] : null
 	return{
 		question: question ? question : null,
-		hasAnswered,
 		questioner,
 	}
 }

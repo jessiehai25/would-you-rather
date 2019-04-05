@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {formatDate} from '../utils/helpers'
 import {handleSaveAnswerToQuestion} from '../actions/questions'
+import Result from './Result'
 
 class Question extends Component{
 	state = {
@@ -28,8 +29,7 @@ class Question extends Component{
 	}
 
 	render(){
-		const selectedOption = this.state.selectedOption
-		const {question, questioner, loading} = this.props
+		const {id, question, questioner, loading, hasAnswered} = this.props
 		if (loading === true){
 			return <p>Loading</p>
 		}
@@ -37,6 +37,13 @@ class Question extends Component{
 			return <p>This question does not exist</p>
 		}
 		const {author, timestamp, optionOne, optionTwo} = question
+
+		if (hasAnswered === true){
+			return(
+				<Result id = {id}/>
+			)
+		}
+
 		return(
 			<div className = 'question'>
 					<div>
@@ -71,25 +78,35 @@ class Question extends Component{
 								</div>
 							
 						</div>
-						<button 
-							className = "submitBtn"
-							onClick = {this.handleSubmitBtn}
-						>Submit</button>
+						<div className = "margin-right">
+							<button 
+								className = "submitBtn"
+								onClick = {this.handleSubmitBtn}
+							>Submit</button>
+						</div>
 					</div>
 				</div>
 			)
 	}
 }
 
-function mapStateToProps({authedUser, users, questions}, {id}){
+function mapStateToProps({authedUser, users, questions}, props){
+	const{id} = props.match.params
 	const question = questions[id]
 	const questioner = question ? users[question.author] : null
+	const answerIds= !users[authedUser]
+ 				?[]
+ 				:Object.keys(users[authedUser].answers)
+ 	
+
 	return{
 		loading: authedUser === null,
 		question: question ? question : null,
 		questioner,
 		id: id,
-		authedUser
+		authedUser,
+		hasAnswered: answerIds.includes(id)
+
 	}
 }
 
