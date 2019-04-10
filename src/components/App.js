@@ -38,7 +38,7 @@ class App extends Component {
               <Route path='/' exact component = {Login}/>
               <PrivateRoute Logined={Logined} path='/dashboard' component = {Dashboard}/>
               <PrivateRoute Logined={Logined} path='/leaderboard' component = {LeaderBoard}/>
-              <PrivateRoute Logined={Logined} path='/new' component = {NewQuestion}/>
+              <PrivateRoute Logined={Logined} path='/add' component = {NewQuestion}/>
               <PrivateRoute Logined={Logined} path='/question/:id' component = {Question}/>  
               <PrivateRoute Logined={Logined} component = {ErrorPage}/>       
             </Switch>       

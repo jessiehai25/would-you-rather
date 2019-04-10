@@ -12,7 +12,7 @@ class LeaderBoard extends Component {
 				<ul className = 'questionList'>
 					{usersRank.map((user)=>(
 
-						<div className = "user-box">
+						<div className = "user-box" key = {user}>
 							<li key = {users[user].id}>
 								<div className = "username">{user}</div>
 								<div className = "bottom">

@@ -20,7 +20,7 @@ class Nav extends Component {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to ='/new' activeClassName = 'active' className = 'active'>
+						<NavLink to ='/add' activeClassName = 'active' className = 'active'>
 						New Question
 						</NavLink>
 					</li>
