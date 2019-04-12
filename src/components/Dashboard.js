@@ -31,7 +31,7 @@ class Dashboard extends Component {
 					</select>
 				</form>
 				<ul className = 'questionList'>
-					{answered === 'false'
+					{answered === 'true'
 						?answerIds.map((id) => (
 							<li key = {id}>
 								<QuestionBtn id={id}/>

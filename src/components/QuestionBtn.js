@@ -34,9 +34,9 @@ class QuestionBtn extends Component{
 							<div className="right">
 								<b className="headline">Would You Rather...</b>
 								<div className="radio">
-									<input type="radio" value="1" name="Option1"/>{optionOne.text}
+									{optionOne.text}
 									<br/>
-									<input type="radio" value="2" name="Option2"/>{optionTwo.text}
+									{optionTwo.text}
 								</div>
 							</div>
 						</div>
