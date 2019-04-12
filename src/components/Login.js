@@ -5,7 +5,7 @@ import {setAuthedUser} from '../actions/authedUser'
 
 class Login extends Component{
 	state = {
-		username: '',
+		username: 'Please select',
 		toReferror: false,
 		reTry: false,
 	}
@@ -59,13 +59,16 @@ class Login extends Component{
 						?<div className="red"> Please try again </div>
 						:<br/>
 					}
-					<br/>	
-					<input 
-						placeholder= "Input your Username"
-						value = {username}
-						className = "textarea"
-						onChange = {this.handleChange}
-						/>
+					<br/>
+					<form id='loginUser' className = 'center' >
+						<select value = {username} onChange = {this.handleChange}>
+							<option value = ''>Please select</option>
+						{users.map((user)=>(
+							<option value = {user}>{user}</option>
+						))}
+						</select>
+					</form>
+						
 					<button 
 						className="submitBtn"
 						onClick = {this.handleBtn}
